@@ -120,6 +120,7 @@ function ColorNames(opts){
 		"LightGoldenRodYellow" 	: "#FAFAD2", 
 		"OldLace" 				: "#FDF5E6", 
 		"Red" 					: "#FF0000", 
+        "FerrariRed"            : "#FF2800",
 		"Fuchsia" 				: "#FF00FF", 
 		"Magenta" 				: "#FF00FF", 
 		"DeepPink" 				: "#FF1493", 
@@ -154,17 +155,17 @@ function ColorNames(opts){
 	
 	var colorObj = this.colorObj;
 	
-	returnItems(opts.type);
-	
-	function returnItems(type){
+	//this.colorArr = returnItems(opts.type);
+    
+	this.returnItems = function(type, shadeColor){
 		
 		// returns array with the colorName as key
 		if( type == "all" ){
 			var colorArr = new Array();
 			
-			for (var key in colorObj){
-				colorArr[key] = colorObj[key];
-				console.log(colorObj[key]+' =>'+key);
+			for (var key in this.colorObj){
+				colorArr[key] = this.colorObj[key];
+				//console.log(colorObj[key]+' =>'+key);
 			}
 			
 			return colorArr;
@@ -172,12 +173,21 @@ function ColorNames(opts){
 		else if(type == "all_indexed"){
 			var colorArr = new Array();
 			
-			for (var key in colorObj){
-				colorArr.push(colorObj[key]);
+			for (var key in this.colorObj){
+				colorArr[colorArr.length] = this.colorObj[key];
 			}
 			
 			return colorArr;
 		}
+        else if(type == "all_indexed_obj"){
+            var colorArr = new Array();
+			
+			for (var key in this.colorObj){
+				colorArr[colorArr.length] = {'color':this.colorObj[key], 'colorName':key};
+			}
+			
+			return colorArr;
+        }
 		else if( type == "shades"){
 			var colorArr = new Array();
 			
