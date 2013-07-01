@@ -5,6 +5,8 @@ function ColorNames(opts){
 	var _this = this;
 	
 	var _opts = opts;
+	var numOfShades = opts.numOfShades || 10;
+	var shadeColor  = opts.shadeColor || '#ffffff';
 	
 	this.colorObj = {
 		
@@ -176,9 +178,35 @@ function ColorNames(opts){
 			
 			return colorArr;
 		}
+		else if( type == "shades"){
+			var colorArr = new Array();
+			
+			for (var i = 0; i < numOfShades; i++){
+				var newShade = shadeColor( shadeColor, 10+i );
+				colorArr.push(newShade);
+			}
+		}
 		
 	}
 	
+	
+	function shadeColor(color, shade) {
+        var colorInt = parseInt(color.substring(1),16);
+ 
+        var R = (colorInt & 0xFF0000) >> 16;
+        var G = (colorInt & 0x00FF00) >> 8;
+        var B = (colorInt & 0x0000FF) >> 0;
+ 
+        R = R + Math.floor( ( shade/255 )*R );
+        G = G + Math.floor( ( shade/255 )*G );
+        B = B + Math.floor( ( shade/255 )*B );
+       
+        var newColorInt = ( R<<16 ) + ( G<<8 ) + ( B );
+        var newColorStr = "#"+newColorInt.toString(16);
+       
+        return newColorStr;
+	}
+
 	return this;
 	
 	
