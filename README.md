@@ -21,6 +21,10 @@ Feel free to pull and submit your own colors with an intuitive name.
 
 -> "all", "all_names", "all_indexed_obj", "shades"
 
+
+## Examples
+
+** You can view examples of this plugin [here](http://www.netgfx.com/trunk/colormyname)
  
 
 ===========
