@@ -179,6 +179,15 @@ function ColorNames(opts){
 			
 			return colorArr;
 		}
+        else if( type == "all_names"){
+            var colorArr = new Array();
+            
+            for (var key in this.colorObj){
+				colorArr[colorArr.length] = key;
+			}
+			
+			return colorArr;
+        }
         else if(type == "all_indexed_obj"){
             var colorArr = new Array();
 			

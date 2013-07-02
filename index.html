@@ -32,22 +32,24 @@
 			</header>
 			
 
-			<div class="container-fluid">
-			  <div class="row-fluid">
-			    <div class="span2">
+			<div class="container">
 			     <div class="btn-group">
-                      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        Action
+                      <a class="btn dropdown-toggle btn-large" data-toggle="dropdown" href="#">
+                        PICK A COLOR NAME
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu" id="namesDD">
+                      <ul class="dropdown-menu " id="namesDD">
                         
                       </ul>
                     </div>
-                    
-			    </div>
-			    
-			  </div>
+                
+                <input type="text" id="autoType">
+                
+                <div class="alert">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                </div>
+                
 			</div>
 
 			<footer>
@@ -62,15 +64,21 @@
                 "numOfShades":10
             });
             
-            
-            
-            colorNames = colorNames.returnItems('all_indexed_obj');
+            colorNames = colorNames.returnItems('all_names');
             console.log(colorNames);
             for(var i=0; i<colorNames.length; i++){
                 
                 $("#namesDD").append("<li><a tabindex='-1' href='#' class='colorNameItem' rel='"+colorNames[i].colorName+"'>"+colorNames[i].colorName+"</a></li>");
                 
             }
+            
+            $("#autoType").typeahead({
+            'source':colorNames
+            });
+            
+            $("#namesDD").on("change",function(event){
+                console.log(event);
+            });
             
 		</script>
 	</body>

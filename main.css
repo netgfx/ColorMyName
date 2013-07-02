@@ -10,3 +10,20 @@ body {
 .span10{
 	background-color:#bbd8e9;
 }
+
+footer{
+    position:fixed;
+    bottom:0;
+}
+
+.container{
+    min-height:400px;
+}
+
+.btn-group{
+    text-align:left;
+    position:absolute;
+    left:50%;
+    margin-left: -150px;
+    top:200px;
+}
