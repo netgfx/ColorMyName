@@ -33,22 +33,25 @@
 			
 
 			<div class="container">
+<!--
 			     <div class="btn-group">
                       <a class="btn dropdown-toggle btn-large" data-toggle="dropdown" href="#">
-                        PICK A COLOR NAME
+                        or PICK A COLOR NAME
                         <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu " id="namesDD">
                         
                       </ul>
                     </div>
-                
-                <input type="text" id="autoType">
-                
-                <div class="alert">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>Warning!</strong> Best check yo self, you're not looking too good.
+-->
+                <div class="alert alert-info">
+                  
+                  <strong>All CCS Color Names!</strong> Pick a color OR type something...
                 </div>
+                
+                <input type="text" id="autoType" placeholder="TYPE A LETTER">
+                
+                
                 
 			</div>
 
@@ -64,21 +67,50 @@
                 "numOfShades":10
             });
             
-            colorNames = colorNames.returnItems('all_names');
-            console.log(colorNames);
-            for(var i=0; i<colorNames.length; i++){
+            var _colorNames = colorNames.returnItems('all_names');
+            var colorValues = colorNames.returnItems('all_indexed_obj');
+            
+/////////////////////////////////////////////////////////////////////////////////////////
+            /////////// EXAMPLE CODE //////////////////////////
+            
+            for(var i = 0; i < colorValues.length; i++){
                 
-                $("#namesDD").append("<li><a tabindex='-1' href='#' class='colorNameItem' rel='"+colorNames[i].colorName+"'>"+colorNames[i].colorName+"</a></li>");
+                $("#namesDD").append("<li><a tabindex='-1' href='#' class='colorNameItem' rel='"+colorValues[i].colorName+"'>"+colorValues[i].colorName+"</a></li>");
                 
             }
             
             $("#autoType").typeahead({
-            'source':colorNames
+                'source':_colorNames,
+                'updater':getColorName,
+                'autocomplete':'off'    
             });
             
-            $("#namesDD").on("change",function(event){
-                console.log(event);
+            for(var i=0; i < colorValues.length; i++){
+                $(".container").append('<span class="label pull-left" rel="'+colorValues[i].color+'" style="color:#000;background-color:'+colorValues[i].color+';margin-left:5px;margin-top:5px;">' + colorValues[i].colorName + '</span>');
+            }
+            
+            $(".container").append('<div class="well well-small"></div>');
+            
+            
+            $(".label").on('click',function(){
+                
+                var color = $(this).attr('rel');
+                
+                $('body').css({'background-color':color});
+                
+                $(".well").empty().append('<label>'+color+'</label>');
+                
             });
+            
+            function getColorName(item){
+                
+                var color = colorNames.getColorFromName(item);
+                $('body').css({'background-color':color});
+                
+                $(".well").empty().append('<label>'+color+'</label>');
+                
+                return item;
+            }
             
 		</script>
 	</body>

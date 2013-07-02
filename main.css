@@ -24,6 +24,26 @@ footer{
     text-align:left;
     position:absolute;
     left:50%;
-    margin-left: -150px;
+    margin-left: 0px;
     top:200px;
+}
+
+#autoType{
+    margin:0 auto;
+    position:relative;
+    height:30px;
+    float:left;
+    margin-right:100%;
+    margin-bottom:20px;
+}
+
+.label{
+    cursor:pointer;
+}
+
+.well{
+    margin-top:20px;
+    float:left;
+    margin-right:100%;
+    width:100%;
 }

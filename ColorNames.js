@@ -207,7 +207,17 @@ function ColorNames(opts){
 		}
 		
 	}
-	
+    
+    this.getColorFromName = function(color){
+        
+        for (var key in this.colorObj){
+            if( key === color ){
+                return this.colorObj[key];
+            }
+        }
+        
+    }
+    
 	
 	function shadeColor(color, shade) {
         var colorInt = parseInt(color.substring(1),16);
